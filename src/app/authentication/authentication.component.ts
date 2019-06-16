@@ -1,7 +1,8 @@
 import { AutenthicationService } from './../shared/services/autenthication.service';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-authentication',
@@ -9,24 +10,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./authentication.component.sass']
 })
 export class AuthenticationComponent implements OnInit {
-  emailForm: FormGroup;
-  submitted = false;
-
-  constructor(private router: Router, private authService: AutenthicationService, private formBuilder: FormBuilder) { }
-
-  ngOnInit() {
-  this.emailForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+  emailForm = new FormGroup({
+    email: new FormControl('emailValidation', [Validators.required, Validators.email, Validators.minLength(6)])
   });
+  @Output() goodValueEmail = new EventEmitter<>();
+  email: string;
+
+  constructor(private router: Router, private authService: AutenthicationService) { }
+  ngOnInit() {
+      this.authService.CheckEmail()
+      .subscribe(
+        (data) => {
+           console.log(data);
+       });
   }
-
-  get f() { return this.emailForm.controls; }
-
   onSubmit() {
-    this.submitted = true;
-    if (this.emailForm.invalid) {
-      return;
-    }
-    this.authService.CheckEmail(this.emailForm.value.email);
+    // if(this.email === )
+    this.goodValueEmail.emit(this.email);
+    this.router.navigate(['password']);
   }
 }
