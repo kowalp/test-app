@@ -8,5 +8,10 @@
       "id": 2,
       "password": "StrongPassword",
       "email": "Shanna@melissa.tv"
+    },
+    {
+      "id": 3,
+      "password": "testing",
+      "email": "ma@mam.pl"
     }
 ]

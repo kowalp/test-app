@@ -1,3 +1,12 @@
-<p>
-  main works!
-</p>
+ <ng-container *ngIf="authIsLoaded">
+         <button *ngIf="!isLoggedIn" (click)="signIn()">Sign In With Google</button>
+        <button *ngIf="isLoggedIn" (click)="signOut()">Sign Out</button>
+    </ng-container>
+    <h2 *ngIf="authIsLoaded && isLoggedIn"> Signed in as {{user.name}} </h2>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <label>Search Youtube for videos</label>
+        <input type="search" ngModel name="search"/>
+        <button class="btn btn-primary" type="submit" >Search</button>
+    </form>
+    
+    <a routerLink="/Login" (click)="logOut()">Log Out</a>

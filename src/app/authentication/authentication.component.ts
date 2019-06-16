@@ -15,9 +15,9 @@ export class AuthenticationComponent implements OnInit {
   constructor(private router: Router, private authService: AutenthicationService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-  this.emailForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-  });
+    this.emailForm = this.formBuilder.group({
+        email: ['', [Validators.required, Validators.email]],
+    });
   }
 
   get f() { return this.emailForm.controls; }
