@@ -2,6 +2,7 @@ import { AutenthicationService } from 'src/app/shared/services/autenthication.se
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../shared/services/requests.service';
 import { User } from '../shared/interfaces/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -12,7 +13,9 @@ export class MainComponent implements OnInit {
   authIsLoaded = false;
   isLoggedIn = false;
   user: User;
-  constructor(private requestsService: RequestsService, private authenticationService: AutenthicationService) { }
+  youtubeVideos = [];
+  videoId: string;
+  constructor(private requestsService: RequestsService, private authenticationService: AutenthicationService, private router: Router) { }
 
   signIn(): void {
     this.authenticationService.signIn();
@@ -39,11 +42,30 @@ export class MainComponent implements OnInit {
     this.requestsService.SendForm(f.value.search)
     .subscribe(
       (res) => {
-        console.log(res);
+        for (const key in res) {
+          if (res.hasOwnProperty(key)) {
+            console.log(res);
+            res[key].forEach(el => {
+              const element = {
+                Description: el.snippet.description,
+                Title: el.snippet.title,
+                Thumbnail: el.snippet.thumbnails.high.url,
+                VideoId: el.id.videoId
+              };
+              this.youtubeVideos.push(element);
+            });
+          }
+        }
       }
     );
   }
-  logOut() {
-
+  logOut(videoId) {
+    this.requestsService.findTags(videoId)
+    .subscribe(
+      (res) => console.log(res)
+    );
+  }
+  details(videoId: string) {
+    this.router.navigate(['/youtube', videoId]);
   }
 }

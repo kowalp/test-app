@@ -1,12 +1,31 @@
- <ng-container *ngIf="authIsLoaded">
+    <ng-container *ngIf="authIsLoaded">
          <button *ngIf="!isLoggedIn" (click)="signIn()">Sign In With Google</button>
         <button *ngIf="isLoggedIn" (click)="signOut()">Sign Out</button>
     </ng-container>
     <h2 *ngIf="authIsLoaded && isLoggedIn"> Signed in as {{user.name}} </h2>
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-        <label>Search Youtube for videos</label>
-        <input type="search" ngModel name="search"/>
-        <button class="btn btn-primary" type="submit" >Search</button>
-    </form>
+    <header>
+        <h2>Youtube Search videos</h2>
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <label>Search Youtube for videos</label>
+            <input type="search" ngModel name="search"/>
+            <button class="btn btn-primary" type="submit" >Search</button>
+        </form>
+    </header>
+    <main *ngFor="let item of youtubeVideos">
+        <div class="col-breaker"></div>
+        <div class="mainData">
+            <h3>{{item.Title}}</h3>
+            <figure>
+                <img src="{{item.Thumbnail}}" alt="">
+            </figure>
+            <button type='button' class="btn" (click)="details(item.VideoId)">
+                
+                View More
+            </button>
+        </div>
+        <div class="col-breaker"></div>
+
+    </main>
     
-    <a routerLink="/Login" (click)="logOut()">Log Out</a>
+    
+    <a (click)="logOut()">Log Out</a>

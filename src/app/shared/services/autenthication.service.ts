@@ -74,11 +74,10 @@ public isLoaded$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
   loadAuth2(): void {
     gapi.load('auth2', () => {
         gapi.auth2.init({
-            client_id: '152431783045-d743rsg7qv5anc84hs0eq9i7e84ficic.apps.googleusercontent.com',
+            client_id: '251419557466-qvpcuol1cona2tjg99d5ia3pkrhq9fr3.apps.googleusercontent.com',
             fetch_basic_profile: true
         }).then((auth) => {
             this.zone.run(() => {
-                localStorage.removeItem('youtubeToken');
                 this.auth2 = auth;
                 this.isLoaded$.next(true);
             });
@@ -86,28 +85,4 @@ public isLoaded$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
         );
     });
 }
-  // authenticate() {
-  //   return gapi.auth2.getAuthInstance()
-  //       .signIn({scope: 'https://www.googleapis.com/auth/youtube.readonly'})
-  //       .then(() => { console.log('Sign-in successful'); },
-  //             (err) => { console.error('Error signing in', err); });
-  // }
-  // loadClient() {
-  //   gapi.client.setApiKey('YOUR_API_KEY');
-  //   return gapi.client.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
-  //       .then(() => { console.log('GAPI client loaded for API'); },
-  //             (err) => { console.error('Error loading GAPI client for API', err); });
-  // }
-  // // Make sure the client is loaded and sign-in is complete before calling this method.
-  // execute() {
-  //   return gapi.client.youtube.channels.list({})
-  //       .then((response) => {
-  //               // Handle the results here (response.result has the parsed body).
-  //               console.log('Response', response);
-  //             },
-  //             (err) => { console.error('Execute error', err); });
-  // }
-  // gapi.load("client:auth2", () => {
-  //   gapi.auth2.init({client_id: 'YOUR_CLIENT_ID'});
-  // });
 }

@@ -10,9 +10,9 @@ const routes: Routes = [
     { path: '', redirectTo: 'Login', pathMatch: 'full' },
     { path: 'Login' , component: AuthenticationComponent },
     { path: 'password', component: LogInComponent },
-    { path: 'youtube' , component: MainComponent, canActivate: [ AuthGuard ],  children: [
-      { path: ':id', component: YoutubeDetailsComponent}
-    ]},
+    { path: 'youtube' , component: MainComponent, canActivate: [ AuthGuard ]},
+    { path: 'youtube/:id', component: YoutubeDetailsComponent, canActivate: [ AuthGuard ]}
+
 ];
 
 @NgModule({
