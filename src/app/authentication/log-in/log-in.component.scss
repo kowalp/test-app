@@ -1,0 +1,29 @@
+.invalid-feedback{
+    color: red;
+}
+.is-invalid{
+    border: 1px solid red;
+}
+.form-group{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top:40vh;
+    flex-direction: column;
+    max-width: 150px;
+    text-align: center;
+    margin: auto;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    background: url('https://images.pexels.com/photos/1420709/pexels-photo-1420709.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    height: 100vh;
+}

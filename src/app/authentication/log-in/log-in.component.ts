@@ -6,7 +6,7 @@ import { AutenthicationService } from 'src/app/shared/services/autenthication.se
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
-  styleUrls: ['./log-in.component.sass']
+  styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
   email = false;

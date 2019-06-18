@@ -34,9 +34,5 @@ export class YoutubeDetailsComponent implements OnInit {
         }
       }
     );
-    setTimeout(() => {
-      console.log(this.videoDetails);
-    }, 1000);
   }
-
 }

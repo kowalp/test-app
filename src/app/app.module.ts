@@ -1,3 +1,4 @@
+import { LazyLoadingDirective } from './shared/directive/lazyLoading.directive';
 import { RequestsService } from './shared/services/requests.service';
 import { AutenthicationService } from './shared/services/autenthication.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,7 +20,8 @@ import { AuthGuard } from './shared/guards/auth-guard';
     MainComponent,
     AuthenticationComponent,
     LogInComponent,
-    YoutubeDetailsComponent
+    YoutubeDetailsComponent,
+    LazyLoadingDirective
   ],
   imports: [
     HttpClientModule,

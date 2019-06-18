@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
-  styleUrls: ['./authentication.component.sass']
+  styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent implements OnInit {
   emailForm: FormGroup;

@@ -1,5 +1,5 @@
 import { AutenthicationService } from 'src/app/shared/services/autenthication.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ContentChild } from '@angular/core';
 import { RequestsService } from '../shared/services/requests.service';
 import { User } from '../shared/interfaces/User';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.sass']
+  styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
   authIsLoaded = false;
@@ -15,7 +15,9 @@ export class MainComponent implements OnInit {
   user: User;
   youtubeVideos = [];
   videoId: string;
-  constructor(private requestsService: RequestsService, private authenticationService: AutenthicationService, private router: Router) { }
+  showMyElement = false;
+  constructor(private requestsService: RequestsService, private authenticationService: AutenthicationService, private router: Router
+            , private el: ElementRef) { }
 
   signIn(): void {
     this.authenticationService.signIn();
@@ -37,6 +39,7 @@ export class MainComponent implements OnInit {
   });
 
     this.authenticationService.loadAuth2();
+
   }
   onSubmit(f) {
     this.requestsService.SendForm(f.value.search)
@@ -59,11 +62,11 @@ export class MainComponent implements OnInit {
       }
     );
   }
-  logOut(videoId) {
-    this.requestsService.findTags(videoId)
-    .subscribe(
-      (res) => console.log(res)
-    );
+  logOut() {
+    localStorage.removeItem('youtubeToken');
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    this.router.navigate(['/Login']);
   }
   details(videoId: string) {
     this.router.navigate(['/youtube', videoId]);
